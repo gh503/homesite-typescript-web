@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
@@ -38,6 +39,14 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'public', 'index.html'),
         inject: 'body',
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: 'public', to: '', globOptions: {
+              ignore: ['**/index.html']  // 忽略 index.html 文件
+            }
+          }  // 将 public 目录中的所有文件复制到输出目录
+        ]
       }),
       new Dotenv({
         path: path.resolve(__dirname, envFile), // 确保 env 文件被正确加载

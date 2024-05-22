@@ -1,5 +1,5 @@
-const apiUrl = process.env.API_URL;
-console.log(`API URL is ${apiUrl}`);
+import '@vaadin/vaadin-button';
+import '@vaadin/vaadin-text-field';
+import { HomeView } from './views/HomeView';
 
-console.log('Hello, TypeScript!');
-console.log(process.env.NODE_ENV);
+document.body.appendChild(new HomeView());
